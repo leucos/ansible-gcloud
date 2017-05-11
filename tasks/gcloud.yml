@@ -37,7 +37,7 @@
   when: __gcloud_configured|changed
 
 - name: Sets default project
-  command: gcloud config set core/project esante-d8-backup
+  command: gcloud config set core/project {{ gcloud_project_id }}
   when: __gcloud_configured|changed
 
 - name: Remove gcloud servicekey

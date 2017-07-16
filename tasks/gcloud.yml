@@ -21,14 +21,3 @@
   pip:
     name: crcmod
 
-- name: Check if gcloud is configured
-  shell: "gcloud config list core/account | grep {{ gcloud_service_email }} || echo 'NO'"
-  changed_when: '"NO" in __gcloud_configured.stdout'
-  register: __gcloud_configured
-
-- name: Adds service account key
-  template:
-    src: servicekey.json.j2
-    dest: /tmp/servicekey.json
-  when: __gcloud_configured|changed
-

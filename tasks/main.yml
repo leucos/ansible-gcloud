@@ -1,5 +1,5 @@
 - include: check_vars.yml
-  when: gcloud_config_only
+  when: gcloud_config_only or gcloud_project_id is defined
   tags: ["gcloud", "gcloud:check", "check"]
 
 - include: gcloud.yml
@@ -7,4 +7,5 @@
   tags: ["gcloud"]
 
 - include: gcloud_config.yml
+  when: gcloud_project_id is defined
   tags: ["gcloud", "gcloud:config"]

@@ -1,4 +1,5 @@
 - include: check_vars.yml
+  when: gcloud_config_only
   tags: ["gcloud", "gcloud:check", "check"]
 
 - include: gcloud.yml

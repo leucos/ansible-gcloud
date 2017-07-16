@@ -7,7 +7,7 @@
 - name: Adds service account key
   template:
     src: servicekey.json.j2
-    dest: /tmp/servicekey.json
+    dest: "{{ __gcloud_temp_key.path }}"
 
 - name: Activate service account
   shell: "CLOUDSDK_PYTHON_SITEPACKAGES=1 gcloud auth activate-service-account {{ gcloud_service_email }} --key-file {{ __gcloud_temp_key.path }}"

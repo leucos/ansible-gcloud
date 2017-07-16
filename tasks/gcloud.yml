@@ -32,17 +32,3 @@
     dest: /tmp/servicekey.json
   when: __gcloud_configured|changed
 
-- name: Activate service account
-  shell: "CLOUDSDK_PYTHON_SITEPACKAGES=1 gcloud auth activate-service-account {{ gcloud_service_email }} --key-file /tmp/servicekey.json"
-  when: __gcloud_configured|changed
-
-- name: Sets default project
-  command: gcloud config set core/project {{ gcloud_project_id }}
-  when: __gcloud_configured|changed and gcloud_set_as_default
-
-- name: Remove gcloud servicekey
-  file:
-    path: /tmp/servicekey.json
-    state: absent
-
-

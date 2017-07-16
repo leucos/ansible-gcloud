@@ -1,8 +1,9 @@
 - include: check_vars.yml
-  tags:
-    - gcloud
-    - check
+  tags: tags: ["gcloud", "gcloud:check", "check"]
 
 - include: gcloud.yml
-  tags:
-    - gcloud
+  when: not gloud_config_only
+  tags: ["gcloud"]
+
+- include: gcloud_config.yml
+  tags: ["gcloud", "gcloud:config"]

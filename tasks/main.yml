@@ -2,7 +2,7 @@
   tags: ["gcloud", "gcloud:check", "check"]
 
 - include: gcloud.yml
-  when: not gloud_config_only
+  when: not gcloud_config_only
   tags: ["gcloud"]
 
 - include: gcloud_config.yml

@@ -38,7 +38,7 @@
 
 - name: Sets default project
   command: gcloud config set core/project {{ gcloud_project_id }}
-  when: __gcloud_configured|changed
+  when: __gcloud_configured|changed and gcloud_set_as_default
 
 - name: Remove gcloud servicekey
   file:

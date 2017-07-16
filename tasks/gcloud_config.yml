@@ -2,7 +2,7 @@
   tempfile:
     state: file
     suffix: .json
-	register: __gcloud_temp_key
+  register: __gcloud_temp_key
 
 - name: Adds service account key
   template:

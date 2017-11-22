@@ -15,6 +15,7 @@
   with_items:
     - google-cloud-sdk
     - python-pip
+    - python-setuptools
     - python-openssl
 
 - name: Installs crcmod

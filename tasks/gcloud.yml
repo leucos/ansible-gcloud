@@ -17,8 +17,4 @@
     - python-pip
     - python-setuptools
     - python-openssl
-
-- name: Installs crcmod
-  pip:
-    name: crcmod
-
+    - python-crcmod

@@ -1,24 +1,22 @@
 - name: Create temporary file
   tempfile:
-    state: file
-    suffix: .json
+     state: file
+     suffix: .json
   register: __gcloud_temp_key
 
-- name: Adds service account key
-  template:
-    src: servicekey.json.j2
-    dest: "{{ __gcloud_temp_key.path }}"
+- name: Copy temp file
+  copy:
+      content: '{{ gcloud_key }}'
+      dest: '{{ __gcloud_temp_key.path }}'
 
 - name: Activate service account
-  shell: "CLOUDSDK_PYTHON_SITEPACKAGES=1 gcloud auth activate-service-account {{ gcloud_service_email }} --key-file {{ __gcloud_temp_key.path }}"
+  shell: "CLOUDSDK_PYTHON_SITEPACKAGES=1 gcloud auth activate-service-account {{ gcloud_key | from_json | json_query('client_email') }} --key-file {{ __gcloud_temp_key.path }}"
 
 - name: Sets default project
-  command: gcloud config set core/project {{ gcloud_project_id }}
+  command: gcloud config set core/project {{ gcloud_key | from_json | json_query('project_id') }}
   when: gcloud_set_as_default
 
 - name: Remove gcloud servicekey
   file:
     path: "{{ __gcloud_temp_key.path }}"
     state: absent
-
-

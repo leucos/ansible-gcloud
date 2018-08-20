@@ -7,5 +7,5 @@
   tags: ["gcloud"]
 
 - include: gcloud_config.yml
-  when: gcloud_project_id is defined
+  when: gcloud_key is defined
   tags: ["gcloud", "gcloud:config"]

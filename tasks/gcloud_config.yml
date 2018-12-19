@@ -10,10 +10,10 @@
       dest: '{{ __gcloud_temp_key.path }}'
 
 - name: Activate service account
-  shell: "CLOUDSDK_PYTHON_SITEPACKAGES=1 gcloud auth activate-service-account {{ gcloud_key | from_json | json_query('client_email') }} --key-file {{ __gcloud_temp_key.path }}"
+  shell: "CLOUDSDK_PYTHON_SITEPACKAGES=1 gcloud auth activate-service-account {{ gcloud_key | json_query('client_email') }} --key-file {{ __gcloud_temp_key.path }}"
 
 - name: Sets default project
-  command: gcloud config set core/project {{ gcloud_key | from_json | json_query('project_id') }}
+  command: gcloud config set core/project {{ gcloud_key | json_query('project_id') }}
   when: gcloud_set_as_default
 
 - name: Remove gcloud servicekey

@@ -5,16 +5,15 @@
 
 - name: Adds gcloud repos
   apt_repository:
-    repo: "deb http://packages.cloud.google.com/apt cloud-sdk-{{ ansible_distribution_release }} main"
+    repo: "deb http://packages.cloud.google.com/apt cloud-sdk main"
     update_cache: yes
 
 - name: Installs google-cloud-sdk
   apt:
-    pkg: "{{ item }}"
+    pkg: google-cloud-sdk
     state: present
-  with_items:
-    - google-cloud-sdk
-    - python-pip
-    - python-setuptools
-    - python-openssl
-    - python-crcmod
+
+- name: Installs google-cloud-sdk extras
+  apt:
+    pkg: "{{ gcloud_extras }}"
+    state: present

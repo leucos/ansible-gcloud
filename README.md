@@ -1,3 +1,5 @@
+**MOVED TO https://github.com/leucos/ansible-gcloud**
+
 # ansible-gcloud role
 
 Installs gcloud SDK
